@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
+import AppContainer from '../containers/AppContainer'
 
 export default class Index extends Component {
   render() {
-    return (
-      <h1>
-        Hello
-      </h1>
-    )
+    return <AppContainer/>
   }
 }

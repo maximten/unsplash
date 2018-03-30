@@ -3,8 +3,8 @@ import _ from 'lodash'
 
 export default class PhotoList extends Component {
   componentDidMount() {
-    const { fetch } = this.props
-    fetch()
+    const { fetch, fetchPage, photos: { page } } = this.props
+    fetchPage(page)
   }
   render() {
     const { photos: { photos } } = this.props;

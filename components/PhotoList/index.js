@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
+import Photo from '../Photo'
 
 export default class PhotoList extends Component {
   componentDidMount() {
@@ -8,16 +8,14 @@ export default class PhotoList extends Component {
   }
   render() {
     const { photos: { photos } } = this.props;
+    const length = Object.keys(photos).length
     return (
       <div>
         <h2>PhotoList</h2>
         <div>
           {
-            _.map(photos, item => (
-              <div key={item.id}>
-                <img src={item.urls.small} alt={item.description}/>
-                <br/>
-              </div>
+            Object.keys(photos).map((key, index) => (
+                <Photo key={index} photo={photos[key]} isLast={index === length - 1}/>
             ))
           }
         </div>

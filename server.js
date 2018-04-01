@@ -2,6 +2,7 @@ const express = require('express')
 const next = require('next')
 const https = require('https')
 const fs = require('fs')
+const env = require('./env.js') 
 
 const resendRequest = (options, newRes) => {
   https.request(options, (res) => {
@@ -23,7 +24,6 @@ const resendRequest = (options, newRes) => {
     .end()
 }
 
-const env = JSON.parse(fs.readFileSync(__dirname + '/env.json', 'utf8'))
 const { accessKey } = env
 const port = process.env.PORT || 3000
 

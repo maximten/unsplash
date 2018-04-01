@@ -17,13 +17,10 @@ const fetchEpic = action$ => (
 
 const setPageEpic = action$ => (
   action$.ofType(Types.PHOTOS_SET_PAGE_AND_REQUEST_FETCH)
-    .mapTo((action) => {
-      console.log(action)
-      return fetchPage(action)
-    })
+    .mapTo((action) => fetchPage(action))
 )
 
-const fetchPageEpic = action$ => (
+export const fetchPageEpic = action$ => (
   action$.ofType(Types.PHOTOS_FETCH_REQUEST_PAGE)
   .mergeMap(action => 
     ajax.getJSON(`/api/photos?page=${action.page}`)

@@ -6,8 +6,8 @@ import rootEpic from './epics'
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
 
-export default () => (
-  createStore(reducers, composeWithDevTools(
+export default (initialStore) => (
+  createStore(reducers, initialStore, composeWithDevTools(
     applyMiddleware(epicMiddleware)
   ))
 )

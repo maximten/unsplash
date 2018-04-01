@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import Photo from '../Photo'
 
 export default class PhotoList extends Component {
-  componentDidMount() {
-    const { fetch, fetchPage, photos: { page } } = this.props
-    fetchPage(page)
-  }
   render() {
     const { photos: { photos } } = this.props;
     const length = Object.keys(photos).length

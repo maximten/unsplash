@@ -1,4 +1,4 @@
-env.json
+env.js
 .next
 node_modules
 package-lock.json

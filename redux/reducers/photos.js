@@ -13,12 +13,17 @@ export default (state = initialState, action) => {
         ...state,
         fetching: true
       }
-    case Types.PHOTOS_SET_PAGE_AND_REQUEST_FETCH:
+    case Types.PHOTOS_FETCH_REQUEST_PAGE:
       return {
         ...state,
-        page: actions.page,
         fetching: true
       }
+    // case Types.PHOTOS_SET_PAGE_AND_REQUEST_FETCH:
+    //   return {
+    //     ...state,
+    //     page: actions.page,
+    //     fetching: true
+    //   }
     // Merge action result with existing photos in state
     case Types.PHOTOS_FETCH_SUCCESS:
       return {
@@ -30,6 +35,20 @@ export default (state = initialState, action) => {
             return carry
           }, {})
         },
+        fetching: false
+      }
+    case Types.PHOTOS_FETCH_PAGE_SUCCESS:
+      return {
+        ...state,
+        page: action.page,
+        photos: {
+          ...state.photos,
+          ...action.items.reduce((carry, item) => {
+            carry[item.id] = item
+            return carry
+          }, {})
+        },
+        fetching: false
       }
     case Types.PHOTOS_FETCH_FAILURE:
       return {

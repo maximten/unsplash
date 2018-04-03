@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Photo from '../Photo'
+import ScrollWatcher from '../ScrollWatcher'
 import { screenWidthMd, screenWidthBg } from '../constants.js'
 import './index.less'
 
@@ -25,6 +26,12 @@ export default class PhotoList extends Component {
       colCount = 1
     }
     this.setState({ colCount })
+  }
+  fetchNextPage = () => {
+    const { photos: { page, fetching }, fetchPage } = this.props
+    if (!fetching) {
+      fetchPage(page + 1)
+    }
   }
   render() {
     const { photos: { photos } } = this.props
@@ -52,6 +59,7 @@ export default class PhotoList extends Component {
             })
           }
         </div>
+        <ScrollWatcher callback={this.fetchNextPage}/>
       </div>
     )
   }

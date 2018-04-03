@@ -14,7 +14,17 @@ export const fetchPage = (page) => ({
   page
 })
 
+export const setFetchingFlag = () => ({
+  type: Types.PHOTOS_SET_FETCHING_FLAG
+})
+
 export const success = (items) => ({
   type: Types.PHOTOS_FETCH_SUCCESS,
   items
+})
+
+export const successPage = (items, page) => ({
+  type: Types.PHOTOS_FETCH_PAGE_SUCCESS,
+  items,
+  page
 })

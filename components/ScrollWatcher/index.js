@@ -7,7 +7,7 @@ class ScrollWatcher extends Component {
     if (isInViewport) {
       callback()
     }
-    return <div className="scrollWatcher"></div>
+    return <div className="scroll-watcher"></div>
   }
 }
 

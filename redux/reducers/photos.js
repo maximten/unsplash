@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
         },
         fetching: false
       }
-    case Types.PHOTOS_FETCH_FAILURE:
+    case Types.PHOTOS_FETCH_PAGE_FAILURE:
       return {
         ...state,
         fetching: false

@@ -10,3 +10,8 @@ export const successPage = (items, page) => ({
   items,
   page
 })
+
+export const errorPage = (error) => ({
+  type: Types.PHOTOS_FETCH_PAGE_FAILURE,
+  error,
+})

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { photoWidth } from '../constants'
+import './index.less'
 
 export default class Photo extends Component {
   render() {
@@ -12,9 +13,10 @@ export default class Photo extends Component {
       background: photo.color
     }
     return (
-      <div className="photo-container" style={ style }>
-        <img src={photo.urls.small} alt={photo.description} />
-        <br />
+      <div className="photo-container">
+        <div style={ style }>
+          <img src={photo.urls.small} alt={photo.description} />
+        </div>
       </div>
     )
   }

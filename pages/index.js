@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import 'isomorphic-fetch'
 import AppContainer from '../containers/AppContainer'
 import makeStore from '../redux'
-import { success } from '../redux/actions/photos'
+import { successPage } from '../redux/actions/photos'
 
 export default class Index extends Component {
   static async getInitialProps({ req }) {
@@ -16,7 +16,7 @@ export default class Index extends Component {
       }
     })
     .then(response => response.json())
-    store.dispatch(success(items))
+    store.dispatch(successPage(items, 1))
 
     return { initialStore: store.getState() }
   }

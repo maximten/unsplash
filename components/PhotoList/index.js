@@ -46,25 +46,23 @@ export default class PhotoList extends Component {
       <div>
         <div className="columns-container">
           {
-            cols.map((col, colIndex) => {
-              return (
+            cols.map((col, colIndex) => (
                 <div key={colIndex} className="column">
                 {
-                  col.map((item, index) => {
-                    return (
+                  col.map((item, index) => (
                       <div key={index}>
                         <Photo photo={item}/>
                         {
-                          colIndex == 0 && (index + 1) % pageDelimeter == 0 &&
+                          colIndex === 0 && (index + 1) % pageDelimeter === 0 &&
                           <ScrollWatcher callback={() => this.fetchNextPage((index + 1) / pageDelimeter)}/>
                         }
                       </div>
                     )
-                  })
+                  )
                 }
                 </div>
               )
-            })
+            )
           }
         </div>
       </div>

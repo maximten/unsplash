@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Observable } from 'rxjs'
 import PhotoListContainer from '../../containers/PhotoListContainer'
 import { bgColors, scrollInterval } from '../constants'
 import './index.less'
@@ -45,10 +46,12 @@ export default class App extends Component {
   }
   componentDidMount() {
     if (typeof window !== 'undefined') {
-      window.onscroll = () => {
+      Observable.fromEvent(window, "scroll")
+      .debounceTime(10)
+      .subscribe(() => {
         const offset = window.pageYOffset
         this.pickColor(scrollInterval, bgColors, offset)
-      } 
+      })
     }
   }
   render () {

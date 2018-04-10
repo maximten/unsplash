@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import Photo from '../Photo'
 import ScrollWatcher from '../ScrollWatcher'
+import Loader from '../Loader'
 import Container from '../Container'
 import { screenWidthMd, screenWidthBg } from '../constants.js'
 import './index.less'
@@ -36,7 +37,7 @@ export default class PhotoList extends Component {
     }
   }
   render() {
-    const { photos: { photos, pageSize } } = this.props
+    const { photos: { photos, pageSize, fetching } } = this.props
     const { colCount } = this.state
     const cols = Object.keys(photos).reduce((carry, key, index) => {
       carry[index % colCount].push(photos[key])
@@ -68,6 +69,10 @@ export default class PhotoList extends Component {
               )
             }
           </div>
+          {
+            fetching &&
+            <Loader/>
+          }
         </Container>
       </div>
     )

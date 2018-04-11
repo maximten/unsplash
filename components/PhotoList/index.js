@@ -48,8 +48,12 @@ export default class PhotoList extends Component {
   render() {
     const { photos: { photos, fetching } } = this.props
     const { colCount } = this.state
+    const heights = Array(colCount).fill(0)
     const cols = Object.keys(photos).reduce((carry, key, index) => {
-      carry[index % colCount].push(photos[key])
+      const photo = photos[key]
+      const colIndex = heights.indexOf(Math.min(...heights))
+      heights[colIndex] = heights[colIndex] + photo.height
+      carry[colIndex].push(photo)
       return carry
     }, Array(colCount).fill(null).map(i => []))
     const colClass = classNames("column", {"single" : colCount === 1})

@@ -3,9 +3,13 @@ import 'isomorphic-fetch'
 import AppContainer from '../containers/AppContainer'
 import makeStore from '../redux'
 import { successPage } from '../redux/actions/photos'
+import { setMobile } from '../redux/actions/app'
 
 export default class Index extends Component {
   static async getInitialProps({ req }) {
+
+    const userAgent = req.headers['user-agent'];
+    const isMobile = userAgent.match(/(Android|iPhone|Phone)/g) ? true : false;
 
     const store = makeStore()
     const env = require('../env.js')
@@ -17,6 +21,7 @@ export default class Index extends Component {
     })
     .then(response => response.json())
     store.dispatch(successPage(items, 1))
+    store.dispatch(setMobile(isMobile))
 
     return { initialStore: store.getState() }
   }

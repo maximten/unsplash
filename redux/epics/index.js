@@ -1,5 +1,5 @@
 import { combineEpics } from 'redux-observable';
-import photos from './photos.js'
+import photos from './photos'
 
 export default combineEpics(
   photos

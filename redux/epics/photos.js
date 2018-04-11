@@ -5,7 +5,7 @@ import { mapTo } from 'rxjs/add/operator/mapTo'
 import { Observable } from 'rxjs'
 import { ajax } from 'rxjs/observable/dom/ajax'
 import { Types } from '../constants'
-import { successPage, errorPage } from '../actions/photos.js'
+import { successPage, errorPage } from '../actions/photos'
 
 export const fetchPageEpic = action$ => (
   action$.ofType(Types.PHOTOS_FETCH_REQUEST_PAGE)

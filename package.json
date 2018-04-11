@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "start": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "prod": "NODE_ENV=production node server.js"
   },
   "author": "Maxim Ten",
   "license": "MIT",

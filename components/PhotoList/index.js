@@ -4,23 +4,24 @@ import Photo from '../Photo'
 import ScrollWatcher from '../ScrollWatcher'
 import Loader from '../Loader'
 import Container from '../Container'
-import { screenWidthMd, screenWidthBg } from '../constants.js'
+import { screenWidthSm, screenWidthMd, screenWidthBg } from '../constants'
 import './index.less'
 
 export default class PhotoList extends Component {
   constructor(props) {
     super(props)
     this.state = { 
-      colCount: 3,
+      colCount: this.getColCount(),
       bottomReached: false,
     }
   }
   componentDidMount() {
-    this.setColCount()
     window.onresize = this.setColCount
   }
-  setColCount = () => {
-    const width = window ? window.innerWidth : screenWidthBg 
+  getColCount = () => {
+    const { app: { isMobile }} = this.props
+    const initialWidth = isMobile ? screenWidthSm : screenWidthBg
+    const width = typeof window !== 'undefined' ? window.innerWidth : initialWidth 
     let colCount = null
     if (width >= screenWidthBg) {
       colCount = 3
@@ -29,7 +30,10 @@ export default class PhotoList extends Component {
     } else {
       colCount = 1
     }
-    this.setState({ colCount })
+    return colCount
+  }
+  setColCount = () => {
+    this.setState({ colCount: this.getColCount() })
   }
   fetchNextPage = () => {
     const { photos: { page, fetching }, fetchPage } = this.props

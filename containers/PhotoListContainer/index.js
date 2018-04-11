@@ -5,14 +5,15 @@ import PhotoList from '../../components/PhotoList'
 
 class PhotoListContainer extends Component {
   render () {
-    const { fetchPage, photos } = this.props
+    const { fetchPage, photos, app } = this.props
     return (
-      <PhotoList fetchPage={fetchPage} photos={photos}/>
+      <PhotoList fetchPage={fetchPage} photos={photos} app={app}/>
     )
   }
 }
 
-const mapStateToProps = ({ photos }) => ({
+const mapStateToProps = ({ app, photos }) => ({
+  app,
   photos
 })
   

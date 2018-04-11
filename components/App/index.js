@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Observable } from 'rxjs'
 import PhotoListContainer from '../../containers/PhotoListContainer'
+import Header from '../Header'
 import { colors, scrollInterval } from '../constants'
 import './index.less'
 
@@ -58,6 +59,7 @@ export default class App extends Component {
     const { bgColor } = this.state
     return (
       <div className="app" style={{ background: bgColor }}>
+        <Header/>
         <PhotoListContainer/>
       </div>
     )

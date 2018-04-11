@@ -11,7 +11,8 @@ export default class PhotoList extends Component {
   constructor(props) {
     super(props)
     this.state = { 
-      colCount: 3 
+      colCount: 3,
+      bottomReached: false,
     }
   }
   componentDidMount() {
@@ -30,20 +31,27 @@ export default class PhotoList extends Component {
     }
     this.setState({ colCount })
   }
-  fetchNextPage = (currentPage) => {
+  fetchNextPage = () => {
     const { photos: { page, fetching }, fetchPage } = this.props
-    if (!fetching && currentPage === page) {
+    if (!fetching) {
       fetchPage(page + 1)
     }
   }
+  handleScroll = (watcher) => {
+    const { bottomReached } = this.state
+    const bottomReachedNow = watcher.isInViewport
+    if (!bottomReached && bottomReachedNow) {
+      this.fetchNextPage()
+    }
+    this.setState({ bottomReached: bottomReachedNow })
+  }
   render() {
-    const { photos: { photos, pageSize, fetching } } = this.props
+    const { photos: { photos, fetching } } = this.props
     const { colCount } = this.state
     const cols = Object.keys(photos).reduce((carry, key, index) => {
       carry[index % colCount].push(photos[key])
       return carry
     }, Array(colCount).fill(null).map(i => []))
-    const pageDelimeter = Math.floor(pageSize / colCount)
     const colClass = classNames("column", {"single" : colCount === 1})
     return (
       <div className="photo-list">
@@ -56,10 +64,6 @@ export default class PhotoList extends Component {
                     col.map((item, index) => (
                         <div key={index}>
                           <Photo photo={item}/>
-                          {
-                            colIndex === 0 && (index + 1) % pageDelimeter === 0 &&
-                            <ScrollWatcher callback={() => this.fetchNextPage((index + 1) / pageDelimeter)}/>
-                          }
                         </div>
                       )
                     )
@@ -69,6 +73,7 @@ export default class PhotoList extends Component {
               )
             }
           </div>
+          <ScrollWatcher stateChange={this.handleScroll}/>
           {
             fetching &&
             <Loader/>

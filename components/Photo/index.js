@@ -10,13 +10,19 @@ export default class Photo extends Component {
     const style = {
       width: width,
       height: height,
-      background: photo.color
+      backgroundImage: `url(${photo.urls.small})`,
+      backgroundColor: photo.color,
     }
     return (
-      <div className="photo-container">
-        <div style={ style }>
-          <img src={photo.urls.small} alt={photo.description} />
-        </div>
+      <div className="photo-container" style={{
+        backgroundColor: photo.color,
+      }}>
+        <a href="#" className="photo" style={{
+          width: width,
+          height: height,
+          backgroundImage: `url(${photo.urls.small})`,
+        }}>
+        </a>
       </div>
     )
   }

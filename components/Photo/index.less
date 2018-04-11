@@ -1,3 +1,12 @@
 .photo-container {
   margin-bottom: 20px;
+  & > .photo {
+    display: block;
+    background-color: rgba(200, 200, 200, 0);
+    background-blend-mode: color-burn;
+    transition: all 0.3s ease-out;
+    &:hover, &:active, &:focus {
+      background-color: rgba(200, 200, 200, 1);
+    }
+  }
 }

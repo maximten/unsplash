@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Observable } from 'rxjs'
 import PhotoListContainer from '../../containers/PhotoListContainer'
-import { bgColors, scrollInterval } from '../constants'
+import { colors, scrollInterval } from '../constants'
 import './index.less'
 
 export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      bgColor: bgColors[0]
+      bgColor: colors[0]
     }
   }
   pickColor = (interval, colors, offset) => {
@@ -50,7 +50,7 @@ export default class App extends Component {
       .debounceTime(10)
       .subscribe(() => {
         const offset = window.pageYOffset
-        this.pickColor(scrollInterval, bgColors, offset)
+        this.pickColor(scrollInterval, colors, offset)
       })
     }
   }

@@ -7,6 +7,7 @@ export default class MyDocument extends Document {
         <Head>
           <title>Unsplash</title>
           <link rel="stylesheet" href="/_next/static/style.css" />
+          <meta name="viewport" content="width=480"/>
         </Head>
         <body>
           <Main />
